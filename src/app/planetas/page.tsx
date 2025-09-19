@@ -1,5 +1,10 @@
+import { CircularProgress } from "@mui/material"
+import { useState } from "react"
 
-export default function planetas (){
+export default function Planetas (){
+
+  const [carregando, setCarregando]=useState(true)
+    
     
   return (
     <div className="min-h-screen">
@@ -24,6 +29,44 @@ export default function planetas (){
           {/* Content Area */}
           <div className="lg:col-span-2">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
+
+            {
+              (carregando === true) ? (<>
+              <CircularProgress size={100}/>
+              </>) : (<>
+
+
+
+              <table className="table-auto">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Artist</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+      <td>Malcolm Lockyer</td>
+      <td>1961</td>
+    </tr>
+    <tr>
+      <td>Witchy Woman</td>
+      <td>The Eagles</td>
+      <td>1972</td>
+    </tr>
+    <tr>
+      <td>Shining Star</td>
+      <td>Earth, Wind, and Fire</td>
+      <td>1975</td>
+    </tr>
+  </tbody>
+</table>
+
+
+              </>)
+            }
               Conteúdo Principal
             </h2>
             <div className="prose max-w-none">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 
 export default function Home() {
@@ -26,8 +27,25 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
               
         <span className="box-decoration-slice bg-linear-to-r from-indigo-600 to-pink-500 px-2 text-white ...">
-           Coneças todos os <br />planetas Solares
+           Conheça todos os <br />planetas do sistema Solar
         </span>
+
+        
+        <div className="mx-auto w-full mb-6 max-w-sm ">
+
+        <a href="">
+        <button className="bg-violet-500
+        rounded-md
+        text-2xl
+        p-2
+        text-white
+         hover:bg-violet-600 focus:outline-2 
+         focus:outline-offset-2
+          focus:outline-violet-500 active:bg-violet-700 ...">
+          Vamos lá
+        </button>
+        </a>
+        </div>
 
         
 
@@ -51,7 +69,14 @@ export default function Home() {
             </h2>
             <div className="prose max-w-none">
               <p className="text-gray-600 leading-relaxed">
-                Seu conteúdo aqui...
+                <Image
+                src="/planetas.jpg"
+                alt=""
+                width={300}
+                height={200}
+                >
+
+                </Image>
               </p>
             </div>
           </div>
