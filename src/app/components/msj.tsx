@@ -1,9 +1,6 @@
-"use client"
-
-import { CircularProgress } from "@mui/material"
-import { useState } from "react"
-
-
+import { Button } from "@mui/material";
+import CachedIcon from '@mui/icons-material/Cached';
+import { Home } from "@mui/icons-material";
 
 type planeta = {
   id:number,
@@ -11,16 +8,14 @@ type planeta = {
   carregando?: boolean;  
   erro?: string | boolean;  
   msg?: string | boolean;   
-  children?: React.ReactNode;  
+  children?: React.ReactNode; 
+  btnTentarNovamente?: string |boolean; 
+  btnInicio?: string | boolean;
 
 }
 
-export default function Planetas (props:planeta){
-
-  const [carregando, setCarregando]= useState(true)
-    
-    
-  return (
+export default function Message(props:planeta){
+    return(
     <div className="min-h-screen">
 
       <header className="bg-white shadow-sm border-b">
@@ -43,47 +38,31 @@ export default function Planetas (props:planeta){
           {/* Content Area */}
           <div className="lg:col-span-2">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-
-            {
-              (carregando === true)?(<>
-              <CircularProgress size={100}/>
-              </>) : (<>
-              <table className="table-auto">
-                <thead>
-                  <tr>
-                    <th>Song</th>
-                    <th>Artist</th>
-                    <th>Year</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{props.id}</td>
-                    <td>{props.title}</td>
-                    <td>1961</td>
-                  </tr>
-                  <tr>
-                    <td>Witchy Woman</td>
-                    <td>The Eagles</td>
-                    <td>1972</td>
-                  </tr>
-                  <tr>
-                    <td>Shining Star</td>
-                    <td>Earth, Wind, and Fire</td>
-                    <td>1975</td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-              </>)
-            }
               Conteúdo Principal
             </h2>
             <div className="prose max-w-none">
-              <p className="text-gray-600 leading-relaxed">
-                Seu conteúdo aqui...
-              </p>
+              
+                <p className="text-gray-600 leading-relaxed">{props?.id}</p>
+                <p className="text-gray-600 leading-relaxed">{props?.title}</p>
+                <p className="text-gray-600 leading-relaxed">{props?.carregando}</p>
+
+                {props?.children}
+
+                {(props?.btnTentarNovamente ===true) && (
+                    <Button variant="outlined" startIcon={<CachedIcon />} onClick={()=>{window.location.reload();}} >
+                           Tentar Novamente
+                    </Button>
+                ) }
+
+
+                {(props?.btnInicio ===true) && (
+                    <Button variant="outlined" startIcon={<Home/>} onClick={()=>{window.location.reload();}} >
+                           Voltar ao Inicio
+                    </Button>
+                ) }
+
+                
+              
             </div>
           </div>
 
@@ -107,6 +86,6 @@ export default function Planetas (props:planeta){
 
 </div>
         
-        
+      
     )
 }
