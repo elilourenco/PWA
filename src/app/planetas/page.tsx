@@ -1,9 +1,11 @@
+"use client"
+
 import { CircularProgress } from "@mui/material"
 import { useState } from "react"
 
 export default function Planetas (){
 
-  const [carregando, setCarregando]=useState(true)
+  const [carregando, setCarregando]= useState(true)
     
     
   return (
@@ -31,7 +33,7 @@ export default function Planetas (){
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
 
             {
-              (carregando === true) ? (<>
+              (carregando === true)?(<>
               <CircularProgress size={100}/>
               </>) : (<>
 

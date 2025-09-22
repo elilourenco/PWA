@@ -1,5 +1,15 @@
 
-export default function Message(){
+type planeta = {
+  id:number,
+  title: string,
+  carregando?: boolean;  
+  erro?: string | boolean;  
+  msg?: string | boolean;   
+  children?: React.ReactNode;  
+
+}
+
+export default function Message(props:planeta){
     return(
     <div className="min-h-screen">
 
@@ -27,7 +37,11 @@ export default function Message(){
             </h2>
             <div className="prose max-w-none">
               <p className="text-gray-600 leading-relaxed">
-                Seu conteúdo aqui...
+              
+                
+                  {props?.title}
+                  
+              
               </p>
             </div>
           </div>
