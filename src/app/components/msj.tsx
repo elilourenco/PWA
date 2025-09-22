@@ -11,6 +11,7 @@ type planeta = {
   children?: React.ReactNode; 
   btnTentarNovamente?: string |boolean; 
   btnInicio?: string | boolean;
+  icon: string
 
 }
 
@@ -56,7 +57,7 @@ export default function Message(props:planeta){
 
 
                 {(props?.btnInicio ===true) && (
-                    <Button variant="outlined" startIcon={<Home/>} onClick={()=>{window.location.reload();}} >
+                    <Button variant="outlined" startIcon={<Home/>} onClick={()=>{window.location.href="/";}} >
                            Voltar ao Inicio
                     </Button>
                 ) }

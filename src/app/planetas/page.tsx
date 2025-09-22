@@ -2,6 +2,7 @@
 
 import { CircularProgress } from "@mui/material"
 import { useState } from "react"
+import Padrao from "../components/padrao";
 
 
 
@@ -11,16 +12,26 @@ type planeta = {
   carregando?: boolean;  
   erro?: string | boolean;  
   msg?: string | boolean;   
-  children?: React.ReactNode;  
+  children?: React.ReactNode; 
+  icon?: number |string 
 
 }
 
 export default function Planetas (props:planeta){
 
   const [carregando, setCarregando]= useState(true)
-    
+   const [erro, setErro]= useState({})
+    const [msg, setMsg]= useState({})    
     
   return (
+    <Padrao 
+    id={props.id}
+    title={props.title}
+    erro={props.erro}
+    msg={props.msg}
+    
+    carregando={carregando}>
+      
     <div className="min-h-screen">
 
       <header className="bg-white shadow-sm border-b">
@@ -107,6 +118,6 @@ export default function Planetas (props:planeta){
 
 </div>
         
-        
+</Padrao>        
     )
 }
