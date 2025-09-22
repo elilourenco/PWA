@@ -38,10 +38,9 @@ export default function Message(props:planeta){
             <div className="prose max-w-none">
               <p className="text-gray-600 leading-relaxed">
               
-                
-                  {props?.title}
-                  
-              
+                  <p>{props.id}</p>
+                  <p>{props?.title}</p>
+                  <p>{props.carregando}</p>
               </p>
             </div>
           </div>
