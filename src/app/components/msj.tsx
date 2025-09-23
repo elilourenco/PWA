@@ -58,7 +58,7 @@ export default function Message(props:planeta){
 
                 {(props?.btnInicio ===true) && (
                     <Button variant="outlined" startIcon={<Home/>} onClick={()=>{window.location.href="/";}} >
-                           Voltar ao Inicio
+                      Voltar ao Inicio
                     </Button>
                 ) }
 

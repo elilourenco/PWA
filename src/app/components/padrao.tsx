@@ -17,7 +17,7 @@ export default function Padrao(props:planetas){
     return (
         <>
          {
-            (props?. carregando === true) ? (<>
+            (props?.carregando === true) ? (<>
             <Message
             id={props.id} 
             title={props.title}

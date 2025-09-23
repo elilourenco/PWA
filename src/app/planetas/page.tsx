@@ -1,12 +1,12 @@
 "use client"
-
 import { CircularProgress } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Padrao from "../components/padrao";
+import ApiPlanetas from "@/api/planetas";
 
 
 
-type planeta = {
+type Planeta = {
   id:number,
   title: string,
   carregando?: boolean;  
@@ -17,11 +17,24 @@ type planeta = {
 
 }
 
-export default function Planetas (props:planeta){
+export default function Planetas (props:Planeta){
 
-  const [carregando, setCarregando]= useState(true)
-   const [erro, setErro]= useState({})
-    const [msg, setMsg]= useState({})    
+  const [carregando, setCarregando]= useState(false)
+   const [erro, setErro]= useState(null)
+    const [msg, setMsg]= useState(null) 
+    const [planetas, setPlanetas] = useState<Planeta[]>([])   
+
+
+   useEffect(() => {
+    const loadPlanetas = async () => {
+      const responseApi = await ApiPlanetas.ObterTodos()
+        console.log("Abriu a Pagina", responseApi)
+        setPlanetas(responseApi)
+        setCarregando(false)
+    }
+    
+    loadPlanetas() // Call the function
+}, [])
     
   return (
     <Padrao 
@@ -53,48 +66,36 @@ export default function Planetas (props:planeta){
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Content Area */}
           <div className="lg:col-span-2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Conteúdo Principal
+            </h2>
+            <div className="prose max-w-none">
+              
+                
 
-            {
-              (carregando === true)?(<>
-              <CircularProgress size={100}/>
-              </>) : (<>
-              <table className="table-auto">
+                {
+                  Object.values(planetas)?.map((planeta)=>(
+
+              <table key={planeta.id} className="table-auto">
                 <thead>
                   <tr>
-                    <th>Song</th>
-                    <th>Artist</th>
-                    <th>Year</th>
+                    <th>ID</th>
+                     <th>Name</th>
+                    <th>Title</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{props.id}</td>
-                    <td>{props.title}</td>
-                    <td>1961</td>
+                    <td>{planeta.id}</td>
+                    <td>{planeta.title}</td>
+                    
                   </tr>
-                  <tr>
-                    <td>Witchy Woman</td>
-                    <td>The Eagles</td>
-                    <td>1972</td>
-                  </tr>
-                  <tr>
-                    <td>Shining Star</td>
-                    <td>Earth, Wind, and Fire</td>
-                    <td>1975</td>
-                  </tr>
+                  
                 </tbody>
               </table>
 
-
-              </>)
-            }
-              Conteúdo Principal
-            </h2>
-            <div className="prose max-w-none">
-              <p className="text-gray-600 leading-relaxed">
-                Seu conteúdo aqui...
-              </p>
+                  ))
+                }
+              
             </div>
           </div>
 
@@ -102,7 +103,10 @@ export default function Planetas (props:planeta){
           <aside className="space-y-6">
             <div className="bg-white rounded-lg shadow p-6">
               <h3 className="text-lg font-semibold mb-4">Widget</h3>
-              <p className="text-gray-600">Conteúdo do widget...</p>
+              <p className="text-gray-600">Conteúdo do widget...
+
+              
+              </p>
             </div>
           </aside>
         </div>

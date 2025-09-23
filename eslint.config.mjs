@@ -19,7 +19,19 @@ const eslintConfig = [
       "build/**",
       "next-env.d.ts",
     ],
+
+    "rules": {
+    "@typescript-eslint/no-explicit-any": [
+      "error",
+      {
+        "ignoreRestArgs": true, // Allow any in rest parameters
+        "fixToUnknown": true    // Suggest unknown instead of any
+      }
+    ]
+  }
   },
+
+  
 ];
 
 export default eslintConfig;
